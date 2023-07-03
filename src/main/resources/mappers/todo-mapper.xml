@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="todos">
+	<select id="findById" resultType="Todo" parameterType="string">
+		select * from todos where id = #{id}
+	</select>
+	<select id="findByOwner" resultType="Todo" parameterType="string">
+		select * from todos where owner = #{owner}
+	</select>
+	<insert id="create" parameterType="hashmap">
+		insert into todos values(#{id}, #{owner}, #{description}, #{targetDate}, null)
+	</insert>
+	<delete id="deleteById">
+		delete from todos where id = #{id}
+	</delete>
+	<update id="update" parameterType="Todo">
+		update todos set description = #{description}, target_date = #{targetDate}, done = #{done, jdbcType=VARCHAR} where id = #{id}
+	</update>
+</mapper>

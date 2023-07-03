@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="quests">
+	<select id="findQuest" resultType="Quest">
+		select * from quests where end_date between sysdate-1 and sysdate+7 order by end_date desc
+	</select>
+	<select id="findById" resultType="Quest" parameterType="int">
+		select * from quests where id = #{id}
+	</select>
+	<update id="update" parameterType="Quest">
+		update quests set join_cnt = #{joinCnt} where id = #{id}
+	</update>
+</mapper>
